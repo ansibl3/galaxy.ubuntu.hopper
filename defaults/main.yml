@@ -1,0 +1,5 @@
+---
+hopper_version: 3.11.2
+hopper_package_name: hopperv3-{{ hopper_version }}.deb
+hopper_url: http://www.hopperapp.com/HopperWeb/downloads/{{ hopper_package_name }}
+

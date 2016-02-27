@@ -1,0 +1,15 @@
+---
+- name: Check if hopper is installed
+  command: dpkg-query -W hopperv3
+  register: hopper_check_deb
+  failed_when: hopper_check_deb.rc > 1
+  changed_when: hopper_check_deb.rc == 1
+- name: Download hopper
+  get_url: 
+    url="{{ hopper_url }}"
+    dest="/tmp/{{ hopper_package_name }}"
+  when: hopper_check_deb.rc == 1 
+- name: Install my_package
+  apt: deb="/tmp/{{ hopper_package_name }}"
+  sudo: true
+  when: hopper_check_deb.rc == 1
